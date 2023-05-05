@@ -1,4 +1,7 @@
 const ServiceProviderData = require('../models/serviceProviderProfile')
+const textflow = require("textflow.js")
+
+textflow.useKey("U0EX0SBNzklOgkQQJm5hL6DTBWYpZCRCZKcJ8SwPSOceGCaLPZ9RXtMTPwxLP0Dl");
 
 //===================================== To register service provider =================================//
 const createServiceProvider = async (req, res) => {
@@ -66,7 +69,18 @@ const createServiceProvider = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+//================================ To verify service providers =====================================//
+const verifyProvider = async (req, res) => {
+    const { contactNumber } = req.body;
+    let result = await textflow.sendVerificationSMS(contactNumber);
+    console.log('result for sms', result);
 
+    if (result.ok) //send sms here
+        return res.status(200).json({ success: true });
+
+    return res.status(400).json({ success: false });
+
+}
 //================================ To get all service providers =====================================//
 const getServiceProvider = async (req, res) => {
     try {
@@ -107,7 +121,7 @@ const updateOneServiceProvider = async (req, res) => {
             firstName,
             lastName,
             profilePicUrl,
-            dateOfBirth,
+            //dateOfBirth,
             province,
             city,
             streetAddress,
@@ -118,7 +132,7 @@ const updateOneServiceProvider = async (req, res) => {
             $set: {
                 firstName: firstName,
                 lastName: lastName,
-                dateOfBirth: dateOfBirth,
+                //dateOfBirth: dateOfBirth,
                 province: province,
                 city: city,
                 streetAddress: streetAddress,
@@ -132,9 +146,33 @@ const updateOneServiceProvider = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
+//=============================== Post user profile picture  =================================================//
+const postProfilePic = async (req, res) => {
+    try {
+        const id = req.params.uid;
+        const profilePicUrl = req.file.location;
+        console.log({ profilePicUrl, id });
+
+        // Find the user document by ID
+        const user = await UserData.findById(id);
+
+        // Set the profile picture URL
+        user.profilePicUrl = profilePicUrl;
+
+        // Save the updated user document
+        await user.save();
+
+        res.status(200).send('Profile picture updated successfully!');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal server error');
+    }
+};
 
 exports.getOneServiceProvider = getOneServiceProvider;
 exports.getServiceProvider = getServiceProvider;
 exports.createServiceProvider = createServiceProvider;
 exports.deleteOneServiceProvider = deleteOneServiceProvider;
 exports.updateOneServiceProvider = updateOneServiceProvider;
+exports.postProfilePic = postProfilePic;
+exports.verifyProvider = verifyProvider;
