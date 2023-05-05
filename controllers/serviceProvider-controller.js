@@ -1,7 +1,7 @@
 const ServiceProviderData = require('../models/serviceProviderProfile')
 const textflow = require("textflow.js")
 
-textflow.useKey("U0EX0SBNzklOgkQQJm5hL6DTBWYpZCRCZKcJ8SwPSOceGCaLPZ9RXtMTPwxLP0Dl");
+textflow.useKey("H5ioJKLxBWsORYPQXFwAppShUd3XgkCHweehoQltbkJDKsuHlArUV9wsUB8QIeFK");
 
 //===================================== To register service provider =================================//
 const createServiceProvider = async (req, res) => {
