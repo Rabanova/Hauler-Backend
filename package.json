@@ -1,0 +1,30 @@
+{
+  "name": "hauler-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BCIT-SSD-2020-21/hauler-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BCIT-SSD-2020-21/hauler-backend/issues"
+  },
+  "homepage": "https://github.com/BCIT-SSD-2020-21/hauler-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "multer": "^1.4.5-lts.1",
+    "stripe": "^10.16.0",
+    "textflow.js": "^0.1.4"
+  }
+}
