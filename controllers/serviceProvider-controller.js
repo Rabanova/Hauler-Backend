@@ -28,8 +28,15 @@ const createServiceProvider = async (req, res) => {
             serviceProvided,
             serviceStatus,
             serviceLocation,
-            locationStatus
+            locationStatus,
+            code,
         } = req.body;
+
+        let result = await textflow.verifyCode(contactNumber, code);
+
+        if (!result.valid) {
+            return res.status(400).json({ success: false });
+        }
 
         const newServiceProvider = new ServiceProviderData({
             uid,
@@ -59,14 +66,14 @@ const createServiceProvider = async (req, res) => {
                     locationStatus,
                 }
             },
+            code,
         });
-
-        let check = await newServiceProvider.save();
-        console.log(check);
-        res.status(201).json({ serviceProviderProfile: newServiceProvider });
+        console.log('code', code);
+        await newServiceProvider.save();
+        res.status(201).json({ success: true, serviceProviderProfile: newServiceProvider });
     } catch (error) {
         console.log(error)
-        res.status(404).json({ message: error.message });
+        res.status(404).json({ success: false, message: error.message });
     }
 }
 //================================ To verify service providers =====================================//
