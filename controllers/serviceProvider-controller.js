@@ -1,7 +1,7 @@
 const ServiceProviderData = require('../models/serviceProviderProfile')
 const textflow = require("textflow.js")
 
-textflow.useKey("H5ioJKLxBWsORYPQXFwAppShUd3XgkCHweehoQltbkJDKsuHlArUV9wsUB8QIeFK");
+textflow.useKey("JZI6ELhqXlkk40ILQx3hFueY0jZb62cfHyv65kWEBqL6uLVV5XhOVr1zO3by7McY");
 
 //===================================== To register service provider =================================//
 const createServiceProvider = async (req, res) => {
@@ -19,6 +19,7 @@ const createServiceProvider = async (req, res) => {
             unitNumber,
             email,
             contactNumber,
+            code,
             chequeDepositFormUrl,
             vehicle,
             driverLicenseUrl,
@@ -29,7 +30,6 @@ const createServiceProvider = async (req, res) => {
             serviceStatus,
             serviceLocation,
             locationStatus,
-            code,
         } = req.body;
 
         let result = await textflow.verifyCode(contactNumber, code);
@@ -50,6 +50,7 @@ const createServiceProvider = async (req, res) => {
             unitNumber,
             email,
             contactNumber,
+            code,
             chequeDepositFormUrl,
             vehicleType: {
                 vehicle
@@ -66,7 +67,6 @@ const createServiceProvider = async (req, res) => {
                     locationStatus,
                 }
             },
-            code,
         });
         console.log('code', code);
         await newServiceProvider.save();
