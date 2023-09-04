@@ -28,6 +28,7 @@ router.post('/complete/:postId', postController.markJobComplete)
 router.post('/response/service-provider', postController.addServiceProviserResponse);
 router.post('/response/user', postController.addUserResponse)
 router.get('/response/service-provider/:serviceProviderId/:postId', postController.getResponseByServiseProviderId)
+router.get('/response/user/:uid/:postId', postController.getResponseByUserId)
 router.delete('/response/:responseId', postController.deleteResponse)
 
 module.exports = router;

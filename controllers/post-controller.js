@@ -524,6 +524,23 @@ const getResponseByServiseProviderId = async (req, res) => {
     }
 }
 
+//=================== To get respone by userId on user App =====================//
+const getResponseByUserId = async (req, res) => {
+    try {
+        const id = req.params.postId;
+        const uid = req.params.uid;
+        let newResponse = await PostData.aggregate([
+            { $match: { _id: ObjectId(id), } },
+            { $unwind: "$response" },
+            { $replaceRoot: { newRoot: "$response" } },
+            { $match: { userId: uid } },
+        ]);
+        res.status(200).json(newResponse)
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 //================================= To Delete Response on both apps====================================//
 const deleteResponse = async (req, res, next) => {
     try {
@@ -633,3 +650,4 @@ exports.postGpsCordinates = postGpsCordinates;
 exports.markDriverArrival = markDriverArrival;
 exports.markJobPaid = markJobPaid;
 exports.markJobComplete = markJobComplete;
+exports.getResponseByUserId = getResponseByUserId;
