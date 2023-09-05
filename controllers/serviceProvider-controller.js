@@ -20,16 +20,15 @@ const createServiceProvider = async (req, res) => {
             email,
             contactNumber,
             code,
-            chequeDepositFormUrl,
             vehicle,
-            driverLicenseUrl,
-            driverLicenseExpiry,
-            driverAbstractUrl,
+            serviceLocation,
+            licenseNumber,
+            frontImage,
+            backImage,
             profileStatus,
             serviceProvided,
             serviceStatus,
-            serviceLocation,
-            locationStatus,
+            locationStatus
         } = req.body;
 
         let result = await textflow.verifyCode(contactNumber, code);
@@ -51,13 +50,12 @@ const createServiceProvider = async (req, res) => {
             email,
             contactNumber,
             code,
-            chequeDepositFormUrl,
             vehicleType: {
                 vehicle
             },
-            driverLicenseUrl,
-            driverLicenseExpiry,
-            driverAbstractUrl,
+            licenseNumber,
+            frontImage,
+            backImage,
             profileStatus,
             serviceProvided: {
                 serviceProvided,
@@ -67,6 +65,7 @@ const createServiceProvider = async (req, res) => {
                     locationStatus,
                 }
             },
+            code,
         });
         console.log('code', code);
         await newServiceProvider.save();
