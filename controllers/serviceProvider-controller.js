@@ -69,10 +69,10 @@ const createServiceProvider = async (req, res) => {
         });
         console.log('code', code);
         await newServiceProvider.save();
-        res.status(201).json({ success: true, serviceProviderProfile: newServiceProvider });
+        return res.status(201).json({ success: true, serviceProviderProfile: newServiceProvider });
     } catch (error) {
         console.log(error)
-        res.status(404).json({ success: false, message: error.message });
+        return res.status(404).json({ success: false, message: error.message });
     }
 }
 //================================ To verify service providers =====================================//
