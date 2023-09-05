@@ -34,6 +34,7 @@ const createServiceProvider = async (req, res) => {
         let result = await textflow.verifyCode(contactNumber, code);
 
         if (!result.valid) {
+            
             return res.status(400).json({ success: false });
         }
 
@@ -64,8 +65,7 @@ const createServiceProvider = async (req, res) => {
                     serviceLocation,
                     locationStatus,
                 }
-            },
-            code,
+            }
         });
         console.log('code', code);
         await newServiceProvider.save();
