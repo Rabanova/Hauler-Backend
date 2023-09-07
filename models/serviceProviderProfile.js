@@ -28,7 +28,7 @@ const serviceProviderProfileSchema = new Schema({
     province: { type: String, required: true },
     city: { type: String, required: true },
     streetAddress: { type: String, required: true },
-    unitNumber: { type: String, required: true, default: '' },
+    unitNumber: { type: String, required: false },
     email: { type: String, required: true },
     contactNumber: { type: String, required: true },
     vehicleType: [vehicleTypeSchema],
