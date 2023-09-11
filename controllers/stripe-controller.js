@@ -48,7 +48,7 @@ const createStripeAccountLink = async (req, res) => {
 const createPaymentIntent = async (req, res) => {
   console.log(req.body)
   const amount = req.body.amount * 100;
-  const applicationFee = amount * 0.13;
+  const applicationFee = amount * 0.15;
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amount,
     currency: 'cad',
