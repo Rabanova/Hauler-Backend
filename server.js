@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 // const bodyParser = require("body-parser");
-const stripe = require('stripe')('sk_test_51M23WVAZXbnAuaLLJktMTrL2oSSQKCpqvjDDHkAK1PaYlJMFtLevnKFM9qUTjl6PjS9O3F4jGv7LsX9Yp1XUcRbR00G8JLajvz');
+const env = require('dotenv');
+const stripe = require('stripe')('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');
 
 require('dotenv').config();
 const app = express();

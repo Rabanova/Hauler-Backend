@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51M23WVAZXbnAuaLLJktMTrL2oSSQKCpqvjDDHkAK1PaYlJMFtLevnKFM9qUTjl6PjS9O3F4jGv7LsX9Yp1XUcRbR00G8JLajvz');
+const stripe = require('stripe')('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');
 const ServiceProviderData = require('../models/serviceProviderProfile')
 const PostData = require('../models/posts')
 
@@ -75,7 +75,7 @@ const createPaymentIntent = async (req, res) => {
 
   res.json({
     paymentIntent: paymentIntent.client_secret,
-    publishableKey: 'pk_test_51M23WVAZXbnAuaLLQ0DTyBlLUIlAiEfXDMG08JJnObkdAfPcWosN99cklgD4fmgsnfqAt8ZDFYzCpjAyXwxwRid00007njU21F'
+    publishableKey: 'pk_live_51M23WVAZXbnAuaLLORDCDNocKJwip4jGxe1RTV4yFuWc2raPhUfSExoC49SM5snfftreL2ULPTrctX5avo5HHM5I006pZPKCyH'
   });
 };
 
