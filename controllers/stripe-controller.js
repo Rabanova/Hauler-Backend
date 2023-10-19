@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
-
+const dotenv = require('dotenv');
 const stripe = require('stripe')(process.env.LIVE_KEY);
 const ServiceProviderData = require('../models/serviceProviderProfile')
 const PostData = require('../models/posts')
+
 
 const createStripeAccount = async (req, res) => {
   const serviceProviderID = req.body.serviceProviderID;
