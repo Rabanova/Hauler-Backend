@@ -1,4 +1,6 @@
-const stripe = require('stripe')('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');
+import dotenv from 'dotenv';
+
+const stripe = require('stripe')(process.env.LIVE_KEY);
 const ServiceProviderData = require('../models/serviceProviderProfile')
 const PostData = require('../models/posts')
 
