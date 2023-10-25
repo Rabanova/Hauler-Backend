@@ -21,8 +21,8 @@ const createStripeAccount = async (req, res) => {
 
     const accountLink = await stripe.accountLinks.create({
       account: account.id,
-      refresh_url: `http://${req.body.appUrl}`,
-      return_url: `http://${req.body.appUrl}`,
+      refresh_url: `https://${req.body.appUrl}`,
+      return_url: `https://${req.body.appUrl}`,
       type: 'account_onboarding',
     });
     res.send(accountLink.url)
@@ -36,8 +36,8 @@ const createStripeAccountLink = async (req, res) => {
   try {
     const accountLink = await stripe.accountLinks.create({
       account: req.body.accountId,
-      refresh_url: `http://${req.body.appUrl}`,
-      return_url: `http://${req.body.appUrl}`,
+      refresh_url: `https://${req.body.appUrl}`,
+      return_url: `https://${req.body.appUrl}`,
       type: 'account_onboarding',
     });
     console.log(accountLink)
